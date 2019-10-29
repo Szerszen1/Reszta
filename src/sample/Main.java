@@ -1,23 +1,9 @@
 package sample;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-
 import java.util.Scanner;
-import java.util.Arrays;
 
-public class Main extends Application {
+public class Main {
 
-    @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
-        primaryStage.show();
-    }
 
 
     public static void main(String[] args) {
@@ -25,19 +11,10 @@ public class Main extends Application {
         System.out.println("Program wydający resztę.");
         System.out.println("Wprowadz kwotę:");
         Integer kwota = scan.nextInt();
-        System.out.println("Wprowadz ilosc banknotow/blionow");
-        Integer ilosc = scan.nextInt();
-        int[] nominaly = new int[ilosc];
-        for(int i=0;i<ilosc;i++){
-            System.out.println("Wprowadz " + (i+1) + " nominał:");
-            nominaly[i] = scan.nextInt();
-        }
-        Arrays.sort(nominaly);
-        for(int i=0;i<nominaly.length;i++){
-            System.out.println(nominaly[i]);
-        }
+        int[] nominaly = {1,2,5,10,20,50,100,200,500};
+
         int zmienna = nominaly.length-1;
-        int[] ilosci = new int[ilosc];
+        int[] ilosci = new int[nominaly.length];
         while(kwota!=0){
             if(kwota>=nominaly[zmienna]){
                 kwota = kwota-nominaly[zmienna];
@@ -45,9 +22,10 @@ public class Main extends Application {
             }
             else zmienna--;
         }
+        System.out.println("Najłatwiej będzie ci wydać");
         for(int i=0;i<nominaly.length;i++){
             System.out.println("Nominalow " + nominaly[i] + ": " + ilosci[i]);
         }
-        System.out.print("Koniec");
+        System.out.print("Dziękuje, że mogłem pomóc");
     }
 }
